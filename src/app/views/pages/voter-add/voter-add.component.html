@@ -1,0 +1,95 @@
+<div class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center">
+    <c-container>
+        <c-row class="justify-content-center">
+            <c-col lg="7" md="9" xl="6">
+                <c-card class="mx-4">
+                  <c-card-body class="p-4">
+                        
+                            <c-row class="justify-content-center" class="mb-4">
+                                <h1></h1>
+                            </c-row>
+                            <c-row class="justify-content-center" class="mb-4">
+                                <h1 class="text-center">Add Voter</h1>
+                            </c-row>
+                            <c-input-group class="mb-4">
+                                <button cButton color="link" [routerLink]="['/admin-view']">
+                                    Back to Admin View
+                                  </button>
+                            </c-input-group>
+                            <c-row class="justify-content-center" class="mb-4">
+                                <h3>Bulk Add</h3>
+                            </c-row>
+                        <span ><i>Only support Excel file [.xls,.xlsx]</i></span>
+                        <form cForm [formGroup]="bulkForm" (ngSubmit)="bulkSubmit()" ngNativeValidate >
+                            <c-row class="mb-4">
+                                <c-col [sm]="12">
+                                    <c-input-group class="mb-3">
+                                        <input #myFile cFormControl id="voterFile" type="file" 
+                                        accept=".xlsx,.xls" formControlName="file" required (change)="onFileChange($event)"/>
+                                        <label cInputGroupText for="voterFile">
+                                          Upload Voters
+                                        </label>
+                                      </c-input-group>
+                                </c-col>
+                                <a href="../../../../assets/file/voter_template.xlsx" target="_blank" class="text-end">Get Template for Bulk update</a>
+                            </c-row>
+                            <c-row class="mb-4" class="justify-content-end">
+                                <c-col [sm]="4">
+                                    <button cButton color="primary" type="submit">Add Bulk</button>
+                                </c-col>
+                            </c-row>
+                        </form>
+                        <h3>Single Add</h3>
+                            
+                        <form cForm [formGroup]="voterForm" (ngSubmit)="onSubmit()" ngNativeValidate >
+                            <c-input-group class="mb-3">
+                                    <span cInputGroupText>
+                                        <svg cIcon name="cilUser"></svg>
+                                    </span>
+                                    <input placeholder="First Name" autoComplete="fname" cFormControl id="fname" formControlName="fname" required />
+                            </c-input-group>
+                            <c-input-group class="mb-3">
+                                <span cInputGroupText>
+                                    <svg cIcon name="cilUser"></svg>
+                                </span>
+                                <input placeholder="Last Name" autoComplete="lname" cFormControl id="lname" formControlName="lname" required />
+                            </c-input-group>
+                            <c-input-group class="mb-3">
+                                <label cInputGroupText cCol for="blk">
+                                    Block
+                                </label> 
+                                <input cFormControl id="blk" value="1" min="1" max="60" type="number" formControlName="blk" required/>
+                            
+                                <label cInputGroupText cCol for="lot">
+                                    Lot
+                                </label>
+                                <input cFormControl id="lot" value="1" min="1" max="60" type="number" formControlName="lot" required />
+                            
+                            </c-input-group>
+                            <c-input-group class="mb-3">
+                                <span cInputGroupText>&#64;</span>
+                                <input autoComplete="email" cFormControl placeholder="Email" formControlName="email" type="email" />
+                            </c-input-group>
+                            <c-input-group class="mb-3">
+                                <span cInputGroupText>
+                                    <c-form-check>
+                                        <input cFormCheckInput id="mig" type="checkbox" formControlName="mig"/>
+                                    </c-form-check>
+                                </span>
+                                <span cInputGroupText>
+                                    <label cFormCheckLabel for="mig">Member in Good Standing</label>
+                                </span>
+                                
+                                <!-- <input aria-label="Member in Good Standing" cFormControl /> -->
+                            </c-input-group>
+                            <div class="d-grid">
+                                <button cButton color="success" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </c-card-body>
+                </c-card>
+            </c-col> 
+        </c-row>
+    </c-container>
+</div>
+  

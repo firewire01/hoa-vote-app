@@ -1,0 +1,270 @@
+<div class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center">
+    <c-container breakpoint="sm" >
+        <c-row >
+            <h1 class="text-center mb-4" >
+                Board of Directors
+            </h1>
+        </c-row>
+        <c-row>
+            <div class="mb-5 d-grid gap-2 d-md-flex justify-content-md-end">
+                <button cButton color="success" [routerLink]="['/candidate-add']">
+                    Add Candidates
+                </button>
+              </div>
+        </c-row>
+        <c-row>
+            <c-col xs>
+              <c-card class="mb-4">
+                <c-card-body>
+                  <table
+                    [hover]="true"
+                    [responsive]="true"
+                    [striped]="true"
+                    align="middle"
+                    cTable
+                    class="mb-0 border"
+                  >
+                    <thead class="text-nowrap text-truncate">
+                    <tr>
+                      <th class="bg-body-tertiary text-center ">
+                        <svg cIcon name="cilPeople"></svg>
+                      </th>
+                      <th class="bg-body-tertiary">Candidate</th>
+                      <th class="bg-body-tertiary text-center">BLk - Lot</th>
+                      <th class="bg-body-tertiary text-center">Experties</th>
+                      <th class="bg-body-tertiary text-center">Years in HOA</th>
+                      <th class="bg-body-tertiary text-center">Info</th>
+                      <th class="bg-body-tertiary text-center">Vote</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @for (user of bods; track user.fname; let i = $index) {
+                        <tr>
+                          <td class="text-center" [routerLink]="['/candidate/',user.id]">
+                            <c-avatar [size]="'md'" src="{{ user.fileDTO.base64 ? user.fileDTO.base64 : this.defaultPic }}" />
+                          </td>
+                          <td [routerLink]="['/candidate/',user.id]">
+                            <div>{{user.fname + '&nbsp;' + (user.mname ? user.mname : '') + '&nbsp;' + user.lname}}</div>
+                            <div class="small text-body-secondary text-nowrap">
+                            <span>
+                              {{ user.incumbent ? 'Incumbent' : 'New comer' }} | {{ user.lastPosition ? user.lastPosition : user.currentJob }}
+                            </span>
+                            </div>
+                          </td>
+                          <td class="text-center" [routerLink]="['/candidate/',user.id]">
+                            <span>
+                             Blk {{ user.blk }} | Lot {{ user.lot }}
+                            </span>
+                          </td>
+                          <td [routerLink]="['/candidate/',user.id]">
+                            <div>{{ user.industry ? user.industry : 'Not Known' }}</div>
+                          </td>
+                          <td class="text-center" [routerLink]="['/candidate/',user.id]">
+                            <div>{{ user.yearsInHoa }}</div>
+                          </td>
+                          <td [routerLink]="['/candidate/',user.id]">
+                            <span>
+                              Age: {{ user.blk }} | Married: {{ user.yearsInMarried > 0 ? 'Yes' : 'No' }}
+                             </span>
+                          </td>
+                          <td>
+                            <c-form-check>
+                              <input bodChk cFormCheckInput id="{{user.id}}" type="checkbox" (change)="checkBodChange($event)"/>
+                            </c-form-check>
+                          </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </c-card-body>
+              </c-card>
+            </c-col>
+        </c-row>
+
+          <c-row>
+            <h1 class="text-center">
+                Grievance
+            </h1>
+        </c-row>
+        <c-row>
+          <c-col xs>
+            <c-card class="mb-4">
+              <c-card-body>
+                <table
+                  [hover]="true"
+                  [responsive]="true"
+                  [striped]="true"
+                  align="middle"
+                  cTable
+                  class="mb-0 border"
+                >
+                  <thead class="text-nowrap text-truncate">
+                  <tr>
+                    <th class="bg-body-tertiary text-center ">
+                      <svg cIcon name="cilPeople"></svg>
+                    </th>
+                    <th class="bg-body-tertiary">Candidate</th>
+                    <th class="bg-body-tertiary text-center">BLk - Lot</th>
+                    <th class="bg-body-tertiary text-center">Experties</th>
+                    <th class="bg-body-tertiary text-center">Years in HOA</th>
+                    <th class="bg-body-tertiary text-center">Info</th>
+                    <th class="bg-body-tertiary text-center">Vote</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    @for (user of grievances; track user.fname; let i = $index) {
+                      <tr >
+                        <td class="text-center" [routerLink]="['/candidate/',user.id]">
+                          <c-avatar [size]="'md'" src="{{ user.fileDTO.base64 ? user.fileDTO.base64 : this.defaultPic }}" />
+                        </td>
+                        <td [routerLink]="['/candidate/',user.id]">
+                          <div>{{user.fname + '&nbsp;' + (user.mname ? user.mname : '') + '&nbsp;' + user.lname}}</div>
+                          <div class="small text-body-secondary text-nowrap">
+                          <span>
+                            {{ user.incumbent ? 'Incumbent' : 'New comer' }} | {{ user.lastPosition ? user.lastPosition : user.currentJob }}
+                          </span>
+                          </div>
+                        </td>
+                        <td class="text-center" [routerLink]="['/candidate/',user.id]">
+                          <span>
+                           Blk {{ user.blk }} | Lot {{ user.lot }}
+                          </span>
+                        </td>
+                        <td [routerLink]="['/candidate/',user.id]">
+                          <div>{{ user.industry ? user.industry : 'Not Known' }}</div>
+                        </td>
+                        <td class="text-center" [routerLink]="['/candidate/',user.id]">
+                          <div>{{ user.yearsInHoa }}</div>
+                        </td>
+                        <td [routerLink]="['/candidate/',user.id]">
+                          <span>
+                            Age: {{ user.blk }} | Married: {{ user.yearsInMarried > 0 ? 'Yes' : 'No' }}
+                           </span>
+                        </td>
+                        <td>
+                          <c-form-check>
+                            <input gvChk cFormCheckInput id="{{user.id}}" type="checkbox"  (change)="checkGVChange($event)" />
+                          </c-form-check>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </c-card-body>
+            </c-card>
+          </c-col>
+      </c-row>
+
+    <c-row>
+        <h1 class="text-center">
+            Users
+        </h1>
+    </c-row>
+    <c-row>
+        <div class="mb-5 d-grid gap-2 d-md-flex justify-content-md-end">
+            <button cButton color="primary" [routerLink]="['/voter-add']">
+                Add Voters
+            </button>
+          </div>
+    </c-row>
+    <c-row>
+      <c-col xs>
+        <c-card class="mb-4">
+          <c-card-body>
+            <table
+              [hover]="true"
+              [responsive]="true"
+              [striped]="true"
+              align="middle"
+              cTable
+              class="mb-0 border"
+            >
+              <thead class="text-nowrap text-truncate">
+              <tr>
+                <th class="bg-body-tertiary text-center ">
+                  <svg cIcon name="cilPeople"></svg>
+                </th>
+                <th class="bg-body-tertiary">Username</th>
+                <th class="bg-body-tertiary text-center">First Name</th>
+                <th class="bg-body-tertiary text-center">Last Name</th>
+                <th class="bg-body-tertiary text-center">BLk</th>
+                <th class="bg-body-tertiary text-center">Lot</th>
+                <th class="bg-body-tertiary text-center">Temp Pass</th>
+                <th class="bg-body-tertiary text-center">Acitvated</th>
+                <th class="bg-body-tertiary text-center">Last Log-in</th>
+                <th class="bg-body-tertiary text-center">Voted</th>
+                <th class="bg-body-tertiary text-center">Update</th>
+              </tr>
+              </thead>
+              <tbody>
+                @for (user of users; track user.username; let i = $index) {
+                  <tr >
+                    <td class="text-center" >
+                      <c-avatar [size]="'md'" src="{{ this.defaultPic }}" />
+                    </td>
+                    <td>
+                      <div>{{ user.username }}</div>
+                      <div class="small text-body-secondary text-nowrap">
+                      <span>
+                        {{ user.email }} | {{ user.age }}
+                      </span>
+                      </div>
+                    </td>
+                    <td>
+                        <div>{{ user.fname }}</div>
+                    </td>
+                    <td>
+                        <div>{{ user.lname }}</div>
+                    </td>
+                    <td class="text-center">
+                      <span>
+                       {{ user.blk }}
+                      </span>
+                    </td>
+                    <td class="text-center">
+                        <span>
+                         {{ user.lot }}
+                        </span>
+                      </td>
+                    <td >
+                        <c-dropdown class="justify-content-start">
+                              <button cButton cDropdownToggle color="secondary" variant="outline">
+                                <svg cIcon name="cilMagnifyingGlass" size="sm" title="Numbered List Icon"> </svg>
+                              </button>
+                              <div cDropdownMenu>
+                                <span #tempPass >{{ user.tempPassword }}</span>
+                              </div>
+                       </c-dropdown>
+                    </td>
+                    <td class="text-center" >
+                      <div>{{ user.activatedDate | date : 'M/d/yy h:mm a'}}</div>
+                      
+                    </td>
+                    <td class="text-center" >
+                        <div>{{ user.lastLogin | date : 'M/d/yy h:mm a'}}</div>
+                      </td>
+                      <td class="text-center" >
+                        <div>{{ user.votedDate | date : 'M/d/yy h:mm a'}}</div>
+                      </td>
+                    <td>
+                       <c-col [sm]="3">
+                        <button cButton color="secondary" size="sm" variant="outline" [routerLink]="['/voter-view/', user.id]">
+                            <svg cIcon name="cilPencil" size="lg" title="Numbered List Icon"> </svg>
+                          </button>
+                       </c-col> 
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </c-card-body>
+        </c-card>
+       </c-col>
+     </c-row>
+    </c-container>
+</div>
+    
+        
+            
+
+   

@@ -1,0 +1,292 @@
+<div class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center">
+    <c-container breakpoint="sm">
+        <!-- <c-row class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <c-col [sm]="3" >
+            <button cButton color="primary" >Submit Votes</button>
+          </c-col>
+        </c-row> -->
+
+        <button cButton class="mt-3" color="primary" [routerLink]="['/voter-home']">
+          Voter home
+        </button>
+        <button cButton class="mt-3" color="secondary" [routerLink]="['/voter-list']">
+          Voter List
+        </button>
+        <c-row>
+            <h1 class="text-center">
+                Board of Directors
+            </h1>
+        </c-row>
+        <c-row>
+            <c-col xs>
+              <c-card class="mb-4">
+                <c-card-body>
+                  <table
+                    [hover]="true"
+                    [responsive]="true"
+                    [striped]="true"
+                    align="middle"
+                    cTable
+                    class="mb-0 border"
+                  >
+                    <thead class="text-nowrap text-truncate">
+                    <tr>
+                      <th class="bg-body-tertiary text-center ">
+                        <svg cIcon name="cilPeople"></svg>
+                      </th>
+                      <th class="bg-body-tertiary">Candidate</th>
+                      <th class="bg-body-tertiary text-center">BLk - Lot</th>
+                      <th class="bg-body-tertiary text-center">Experties</th>
+                      <th class="bg-body-tertiary text-center">Years in HOA</th>
+                      <th class="bg-body-tertiary text-center">Info</th>
+                      <th class="bg-body-tertiary text-center">Vote</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @for (user of bods; track user.fname; let i = $index) {
+                        <tr >
+                          <td class="text-center"  (click)="showdetails(user.id)">
+                            <c-avatar [size]="'md'" src="{{ user.fileDTO.base64 ? user.fileDTO.base64 : this.defaultPic }}" />
+                          </td>
+                          <td (click)="showdetails(user.id)">
+                            <div>{{user.fname + '&nbsp;' + (user.mname ? user.mname : '') + '&nbsp;' + user.lname}}</div>
+                            <div class="small text-body-secondary text-nowrap">
+                            <span>
+                              {{ user.incumbent ? 'Incumbent' : 'New comer' }} | {{ user.lastPosition ? user.lastPosition : user.currentJob }}
+                            </span>
+                            </div>
+                          </td>
+                          <td class="text-center" (click)="showdetails(user.id)" >
+                            <span>
+                             Blk {{ user.blk }} | Lot {{ user.lot }}
+                            </span>
+                          </td>
+                          <td (click)="showdetails(user.id)">
+                            <div>{{ user.industry ? user.industry : 'Not Known' }}</div>
+                          </td>
+                          <td class="text-center" (click)="showdetails(user.id)">
+                            <div>{{ user.yearsInHoa }}</div>
+                          </td>
+                          <td (click)="showdetails(user.id)">
+                            <span>
+                              Age: {{ user.age }} | Married: {{ user.yearsInMarried > 0 ? 'Yes' : 'No' }}
+                             </span>
+                          </td>
+                          <td>
+                            <c-form-check>
+                              <input bodChk cFormCheckInput id="{{user.id}}" type="checkbox" (change)="checkBodChange($event)"/>
+                            </c-form-check>
+                          </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </c-card-body>
+              </c-card>
+            </c-col>
+        </c-row>
+
+          <c-row>
+            <h1 class="text-center">
+                Grievance
+            </h1>
+        </c-row>
+        <c-row>
+          <c-col xs>
+            <c-card class="mb-4">
+              <c-card-body>
+                <table
+                  [hover]="true"
+                  [responsive]="true"
+                  [striped]="true"
+                  align="middle"
+                  cTable
+                  class="mb-0 border"
+                >
+                  <thead class="text-nowrap text-truncate">
+                  <tr>
+                    <th class="bg-body-tertiary text-center ">
+                      <svg cIcon name="cilPeople"></svg>
+                    </th>
+                    <th class="bg-body-tertiary">Candidate</th>
+                    <th class="bg-body-tertiary text-center">BLk - Lot</th>
+                    <th class="bg-body-tertiary text-center">Experties</th>
+                    <th class="bg-body-tertiary text-center">Years in HOA</th>
+                    <th class="bg-body-tertiary text-center">Info</th>
+                    <th class="bg-body-tertiary text-center">Vote</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    @for (user of grievances; track user.fname; let i = $index) {
+                      <tr id="i">
+                        <td class="text-center" (click)="showdetails(user.id)">
+                          <c-avatar [size]="'md'" src="{{ user.fileDTO.base64 ? user.fileDTO.base64 : this.defaultPic }}" />
+                        </td>
+                        <td (click)="showdetails(user.id)">
+                          <div>{{user.fname + '&nbsp;' + (user.mname ? user.mname : '') + '&nbsp;' + user.lname}}</div>
+                          <div class="small text-body-secondary text-nowrap">
+                          <span>
+                            {{ user.incumbent ? 'Incumbent' : 'New comer' }} | {{ user.lastPosition ? user.lastPosition : user.currentJob }}
+                          </span>
+                          </div>
+                        </td>
+                        <td class="text-center" (click)="showdetails(user.id)">
+                          <span>
+                           Blk {{ user.blk }} | Lot {{ user.lot }}
+                          </span>
+                        </td>
+                        <td (click)="showdetails(user.id)">
+                          <div>{{ user.industry ? user.industry : 'Not Known' }}</div>
+                        </td>
+                        <td class="text-center" (click)="showdetails(user.id)">
+                          <div>{{ user.yearsInHoa }}</div>
+                        </td>
+                        <td (click)="showdetails(user.id)">
+                          <span>
+                            Age: {{ user.age }} | Married: {{ user.yearsInMarried > 0 ? 'Yes' : 'No' }}
+                           </span>
+                        </td>
+                        <td>
+                          <c-form-check>
+                            <input gvChk cFormCheckInput id="{{user.id}}" type="checkbox"  (change)="checkGVChange($event)" />
+                          </c-form-check>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </c-card-body>
+            </c-card>
+          </c-col>
+      </c-row>
+          <c-row class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <c-col [sm]="3" class="content-end">
+              <button cButton color="primary" (click)="submitVote()">Submit Votes</button>
+            </c-col>
+          </c-row>
+          
+    </c-container>
+</div>
+
+<c-modal #details
+         [scrollable]="true"
+         alignment="center"
+         id="details" [visible]="visible" (visibleChange)="detialsChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>Modal title</h5>
+    <button (click)="showdetail()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+  <c-row >
+        <img  class="rounded mx-auto d-block" src="{{imagePath.file}}" height="400px" max-width="400px" priority>
+  </c-row>
+      <h2 cCardTitle>{{ candidateDto?.fname + '&nbsp;' + (candidateDto?.mname ? candidateDto.mname : '') + '&nbsp;' + candidateDto?.lname}}</h2>
+      <div>
+        <h5 cCardTitle>BLock:&nbsp;{{candidateDto?.blk}}&nbsp;&nbsp;Lot:&nbsp;{{candidateDto?.lot}}</h5>
+      </div>
+        <div>
+          <label cLabel cCol>
+            <b>Running for: </b> {{candidateDto?.candidateType === 'BOD' ? 'Board of Director' : 'Grievance' }}
+          </label>
+        </div>
+        <div>
+          <label cLabel cCol>
+            <b>Incumbent:</b> {{candidateDto?.incumbent === true ? 'Yes' : 'No' }}
+          </label>
+        </div>
+        <div>
+          <label cLabel cCol>
+            <b>Last Position:</b> {{candidateDto?.lastPosition }}
+          </label>
+        </div>
+        <div>
+          <label cLabel cCol>
+            <b>Age:</b> {{candidateDto?.age }}
+          </label>
+        </div>
+        <div>
+          <label cLabel cCol>
+            <b>Job Tittle:</b> {{candidateDto?.currentJob}}
+          </label>
+        </div>
+        <div>
+          <label cLabel cCol>
+            <b>Area of expertise:</b> {{candidateDto?.industry}}
+          </label>
+        </div>
+        <div>
+          <label cLabel cCol>
+            <b>Email:</b> {{candidateDto?.email}}
+          </label>
+        </div>
+        <div>
+          <label cLabel cCol>
+            <b>Facebook:</b> {{candidateDto?.facebook}}
+          </label>
+        </div>
+        <div>
+          <label cLabel cCol>
+            <b>Linkedin:</b> {{candidateDto?.linkedin}}
+          </label>
+        </div>
+        <div>
+          <label cLabel cCol>
+            <b>Years as Home owner:</b> {{candidateDto?.yearsInHoa}}
+          </label>
+        </div>
+        <div>
+          <label cLabel cCol>
+            <b>Married:</b> {{ (candidateDto?.yearsInMarried && candidateDto.yearsInMarried > 0) ? 'Yes' : 'No'}}
+          </label>
+        </div>
+        <div>
+          <label cLabel cCol>
+            <b>Number of year married: </b> {{candidateDto?.yearsInMarried}}
+          </label>
+        </div>
+        <div>
+          <label cLabel cCol>
+            <b>Number of siblings: </b> {{candidateDto?.siblings}}
+          </label>
+        </div>
+        <div>
+          <label >
+            <b>Member in good Standing: </b>  {{candidateDto?.migs === true ? 'Yes' : 'No' }}
+          </label>
+        </div>
+        <div>
+          <h4>Statements</h4>
+          <ul cListGroup>
+            <li *ngFor="let val of candidateDto?.introStatements" cListGroupItem>
+              {{ val.description}}
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4>Related Activities</h4>
+          <ul cListGroup>
+            <li *ngFor="let val of candidateDto?.relevantActivities" cListGroupItem>
+              {{ val.description}}
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4>Goals</h4>
+          <ul cListGroup>
+            <li *ngFor="let val of candidateDto?.goals" cListGroupItem>
+              {{ val.description}}
+            </li>
+          </ul>
+        </div>    
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="showdetail()" cButton color="primary">
+      Close
+    </button>
+  </c-modal-footer>
+</c-modal>
+    
+        
+            
+
+   

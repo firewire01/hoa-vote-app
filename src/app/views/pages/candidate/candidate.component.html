@@ -1,0 +1,127 @@
+
+<div class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center">
+  <c-container>
+      <c-row class="justify-content-center" >
+          <c-col lg="7" md="12" xl="8">
+              <c-card class="mx-4">
+                <c-row class="justify-content-end">
+                  <c-col>
+                    <button cButton color="primary" [routerLink]="['/voter-home']">Back to vote list</button>
+                    <!-- <button cButton color="success" [routerLink]="['/candidate-add']">Add or Update Candidate</button> -->
+                  </c-col>           
+                </c-row>
+                <c-row >
+                  <c-container>
+                    <c-card-body >
+                      <img  class="rounded mx-auto d-block" src="{{ candidateDto?.file64 }}" height="400px" max-width="400px" priority>
+                    </c-card-body>
+                  </c-container>
+                </c-row>
+                <c-row class="text-center">
+                  <c-card-body>
+                    <h2 cCardTitle>{{ candidateDto?.fname + '&nbsp;' + (candidateDto?.mname ? candidateDto.mname : '') + '&nbsp;' + candidateDto?.lname}}</h2>
+                    <c-row class="text-center">
+                      <h5 cCardTitle>BLock:&nbsp;{{candidateDto?.blk}}&nbsp;&nbsp;Lot:&nbsp;{{candidateDto?.lot}}</h5>
+                    </c-row>
+                    <c-row class="text-center">
+                    <c-col>
+                      <label cLabel cCol>
+                        <b>Running for: </b> {{candidateDto?.candidateType === 'BOD' ? 'Board of Director' : 'Grievance' }}
+                      </label>
+                    </c-col>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Incumbent:</b> {{candidateDto?.incumbent === true ? 'Yes' : 'No' }}
+                      </label>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Last Position:</b> {{candidateDto?.lastPosition }}
+                      </label>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Age:</b> {{candidateDto?.age }}
+                      </label>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Job Tittle:</b> {{candidateDto?.currentJob}}
+                      </label>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Area of expertise:</b> {{candidateDto?.industry}}
+                      </label>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Email:</b> {{candidateDto?.email}}
+                      </label>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Facebook:</b> {{candidateDto?.facebook}}
+                      </label>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Linkedin:</b> {{candidateDto?.linkedin}}
+                      </label>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Years as Home owner:</b> {{candidateDto?.yearsInHoa}}
+                      </label>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Married:</b> {{ candidateDto?.yearsInMarried && candidateDto.yearsInMarried > 0 ? 'Yes' : 'No'}}
+                      </label>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Number of year married: </b> {{candidateDto?.yearsInMarried}}
+                      </label>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Number of siblings: </b> {{candidateDto?.siblings}}
+                      </label>
+                    </c-row>
+                    <c-row class="text-center">
+                      <label cLabel cCol>
+                        <b>Member in good Standing: </b>  {{candidateDto?.migs === true ? 'Yes' : 'No' }}
+                      </label>
+                    </c-row>
+                    <h4>Statements</h4>
+                    <ul cListGroup>
+                      <li *ngFor="let val of candidateDto?.introStatements" cListGroupItem>
+                        {{ val.description}}
+                      </li>
+                    </ul>
+                    <h4>Related Activities</h4>
+                    <ul cListGroup>
+                      <li *ngFor="let val of candidateDto?.relevantActivities" cListGroupItem>
+                        {{ val.description}}
+                      </li>
+                    </ul>
+                    <h4>Goals</h4>
+                    <ul cListGroup>
+                      <li *ngFor="let val of candidateDto?.goals" cListGroupItem>
+                        {{ val.description}}
+                      </li>
+                    </ul>
+                    <c-row class="justify-content-center">
+                      <c-col>
+                        <button cButton color="primary" [routerLink]="['/voter-home']">Back to vote list</button>
+                      </c-col>
+                    </c-row>
+                  </c-card-body>
+                </c-row>
+              </c-card>
+            </c-col>
+      </c-row>
+    </c-container>
+</div>

@@ -1,0 +1,173 @@
+<div class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center">
+    <c-container breakpoint="sm">
+
+    <c-row class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <c-col [sm]="3" class="content-end">
+        <button cButton class="mt-3" color="secondary" [routerLink]="['/voter-list']">
+            Voter List
+         </button>
+        <button cButton class="mt-3" color="primary" [routerLink]="['/vote']">
+           Vote Now
+        </button>
+      </c-col>
+    </c-row>
+
+        <c-row>
+            <h1 class="text-center">
+                Board of Directors
+            </h1>
+        </c-row>
+        <c-row>
+            <c-col xs>
+              <c-card class="mb-4">
+                <c-card-body>
+                  <table
+                    [hover]="true"
+                    [responsive]="true"
+                    [striped]="true"
+                    align="middle"
+                    cTable
+                    class="mb-0 border"
+                  >
+                    <thead class="text-nowrap text-truncate">
+                    <tr>
+                      <th class="bg-body-tertiary text-center ">
+                        <svg cIcon name="cilPeople"></svg>
+                      </th>
+                      <th class="bg-body-tertiary">Candidate</th>
+                      <th class="bg-body-tertiary text-center">BLk - Lot</th>
+                      <th class="bg-body-tertiary text-center">Experties</th>
+                      <th class="bg-body-tertiary text-center">Votes</th>
+                      <th class="bg-body-tertiary text-center">Votes against Active user</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @for (user of bods; track user.fname; let i = $index) {
+                        <tr>
+                          <td class="text-center" [routerLink]="['/candidate/',user.id]">
+                            <c-avatar [size]="'md'" src="{{ user.fileDTO.base64 ? user.fileDTO.base64 : this.defaultPic }}" />
+                          </td>
+                          <td [routerLink]="['/candidate/',user.id]">
+                            <div>{{user.fname + '&nbsp;' + (user.mname ? user.mname : '') + '&nbsp;' + user.lname}}</div>
+                            <div class="small text-body-secondary text-nowrap">
+                            <span>
+                              {{ user.incumbent ? 'Incumbent' : 'New comer' }} | {{ user.lastPosition ? user.lastPosition : user.currentJob }}
+                            </span>
+                            </div>
+                          </td>
+                          <td class="text-center" [routerLink]="['/candidate/',user.id]">
+                            <span>
+                             Blk {{ user.blk }} | Lot {{ user.lot }}
+                            </span>
+                          </td>
+                          <td [routerLink]="['/candidate/',user.id]">
+                            <div>{{ user.industry ? user.industry : 'Not Known' }}</div>
+                          </td>
+                          <td class="text-center" [routerLink]="['/candidate/',user.id]">
+                            <div>{{ user.canidateVote }}</div>
+                          </td>
+                          <td [routerLink]="['/candidate/',user.id]">
+                            <div class="d-flex justify-content-between">
+                                <div class="float-start">
+                                  <strong>{{ user.percentile }}%</strong>
+                                </div>
+                                <!-- <div class="float-end ms-1 text-nowrap">
+                                  <small class="text-body-secondary">
+                                    {{ user.period }}
+                                  </small>
+                                </div> -->
+                              </div>
+                            <c-progress thin [value]="user.percentile" color="user.color" />
+                          </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </c-card-body>
+              </c-card>
+            </c-col>
+        </c-row>
+
+          <c-row>
+            <h1 class="text-center">
+                Grievance
+            </h1>
+        </c-row>
+        <c-row>
+            <c-col xs>
+              <c-card class="mb-4">
+                <c-card-body>
+                  <table
+                    [hover]="true"
+                    [responsive]="true"
+                    [striped]="true"
+                    align="middle"
+                    cTable
+                    class="mb-0 border"
+                  >
+                    <thead class="text-nowrap text-truncate">
+                    <tr>
+                      <th class="bg-body-tertiary text-center ">
+                        <svg cIcon name="cilPeople"></svg>
+                      </th>
+                      <th class="bg-body-tertiary">Candidate</th>
+                      <th class="bg-body-tertiary text-center">BLk - Lot</th>
+                      <th class="bg-body-tertiary text-center">Experties</th>
+                      <th class="bg-body-tertiary text-center">Votes</th>
+                      <th class="bg-body-tertiary text-center">Votes against Active user</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @for (user of grievances; track user.fname; let i = $index) {
+                        <tr>
+                          <td class="text-center" [routerLink]="['/candidate/',user.id]">
+                            <c-avatar [size]="'md'" src="{{ user.fileDTO.base64 ? user.fileDTO.base64 : this.defaultPic }}" />
+                          </td>
+                          <td [routerLink]="['/candidate/',user.id]">
+                            <div>{{user.fname + '&nbsp;' + (user.mname ? user.mname : '') + '&nbsp;' + user.lname}}</div>
+                            <div class="small text-body-secondary text-nowrap">
+                            <span>
+                              {{ user.incumbent ? 'Incumbent' : 'New comer' }} | {{ user.lastPosition ? user.lastPosition : user.currentJob }}
+                            </span>
+                            </div>
+                          </td>
+                          <td class="text-center" [routerLink]="['/candidate/',user.id]">
+                            <span>
+                             Blk {{ user.blk }} | Lot {{ user.lot }}
+                            </span>
+                          </td>
+                          <td [routerLink]="['/candidate/',user.id]">
+                            <div>{{ user.industry ? user.industry : 'Not Known' }}</div>
+                          </td>
+                          <td class="text-center" [routerLink]="['/candidate/',user.id]">
+                            <div>{{ user.canidateVote }}</div>
+                          </td>
+                          <td [routerLink]="['/candidate/',user.id]">
+                            <div class="d-flex justify-content-between">
+                                <div class="float-start">
+                                  <strong>{{ user.percentile }}%</strong>
+                                </div>
+                                <!-- <div class="float-end ms-1 text-nowrap">
+                                  <small class="text-body-secondary">
+                                    {{ user.period }}
+                                  </small>
+                                </div> -->
+                              </div>
+                            <c-progress thin [value]="user.percentile" color="user.color" />
+                          </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </c-card-body>
+              </c-card>
+            </c-col>
+        </c-row>
+          
+    </c-container>
+</div>
+    
+        
+            
+
+   

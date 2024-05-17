@@ -1,0 +1,260 @@
+<div class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center">
+    <c-container>
+        <c-row class="justify-content-center">
+            <c-col lg="10" md="12" xl="9">
+                <c-card class="mx-4">
+                  <c-card-body class="p-4">
+                        <form cForm [formGroup]="canidateForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+                            <c-input-group class="mb-4">
+                                <button cButton color="link" [routerLink]="['/admin-view']">
+                                    Back to Admin View
+                                  </button>
+                            </c-input-group>
+                            <c-row class="justify-content-center" class="mb-4">
+                                <h1>Add/Update Candidate</h1>
+                            </c-row>
+                            <!-- <c-row class="mb-4">
+                                <c-col [sm]="4">
+                                    <button cButton color="info">Preview Profile</button>
+                                </c-col>
+                            </c-row> -->
+                            
+                            <c-row class="mb-4">
+                                <c-col [sm]="12">
+                                    <label cLabel cCol for="fname">
+                                        First Name
+                                    </label>
+                                    <input cFormControl id="fname" type="text" formControlName="fname" required />
+                                    <!-- <c-form-feedback [valid]="false">First name is required</c-form-feedback> -->
+                                </c-col>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-col [sm]="12">
+                                    <label cLabel cCol for="mname">
+                                        Middle Name
+                                    </label>
+                                    <input cFormControl id="mname" formControlName="mname"/>
+                                </c-col>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-col [sm]="12">
+                                    <label cLabel cCol for="lname">
+                                        Last Name
+                                    </label>
+                                    <input cFormControl id="lname" formControlName="lname" required />
+                                </c-col>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-col [sm]="2">
+                                    <label cLabel cCol for="blk">
+                                        Block
+                                    </label> 
+                                    <input cFormControl id="blk" value="1" min="1" max="60" type="number" formControlName="blk" required/>
+                                </c-col>
+                                <c-col [sm]="2">
+                                    <label cLabel cCol for="lot">
+                                        Lot
+                                    </label>
+                                    <input cFormControl id="lot" value="1" min="1" max="60" type="number" formControlName="lot" required/>
+                                </c-col>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-col [sm]="12">
+                                    <label cLabel="col" cCol for="email">
+                                        Email
+                                    </label>
+                                    <input cFormControl id="email" type="email" formControlName="email"/>
+                                </c-col>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-col [sm]="12">
+                                    <label cLabel cCol for="currentJob">
+                                        Current Job
+                                    </label>
+                                    <input cFormControl id="currentJob" formControlName="currentJob"/>
+                                </c-col>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-col [sm]="12">
+                                    <label cLabel="col" cCol for="contactNumber">
+                                        Contact number
+                                    </label>
+                                    <input cFormControl id="contactNumber" type="tel" pattern="^(09|\+639)\d{9}$" formControlName="contactNumber"/>
+                                </c-col>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-col [sm]="6">
+                                    <c-form-check>
+                                        <input cFormCheckInput id="mig" type="checkbox" [checked]="true" checked formControlName="mig">
+                                        <label cFormCheckLabel for="mig">Member in Good Standing</label>
+                                    </c-form-check>
+                                </c-col>
+                                <c-col [sm]="5">
+                                    <c-form-check>
+                                        <input cFormCheckInput id="incumbent" type="checkbox" [indeterminate]="false" formControlName="incumbent">
+                                        <label cFormCheckLabel for="incumbent">Incumbent</label>
+                                    </c-form-check>
+                                </c-col>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-col [sm]="12">
+                                    <label cLabel cCol for="lastPosition">
+                                        Previous Board/Officer Position
+                                    </label>
+                                    <input cFormControl id="lastPosition" formControlName="lastPosition"/>
+                                </c-col>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-input-group class="mb-3">
+                                    <label cInputGroupText for="candidateType">
+                                        Run For
+                                      </label>
+                                    <select cSelect id="candidateType" formControlName="candidateType">
+                                      <option value="BOD" selected>Board of Director</option>
+                                      <option value="GRIEVANCE">Grievance</option>
+                                    </select>
+                                    
+                                  </c-input-group>
+                               
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-input-group class="mb-3">
+                                    <label cInputGroupText for="industry">
+                                        Industry
+                                    </label>
+                                    <select cSelect id="industry" formControlName="industry" >
+                                      <option *ngFor="let industry of industries" value={{industry.val}} >{{industry.value}}</option>
+                                    </select>
+                                    
+                                </c-input-group>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-col [sm]="2">
+                                    <label cLabel cCol for="age">
+                                        Age
+                                    </label>
+                                    <input cFormControl id="age" value="1" min="1" max="100" type="number" formControlName="age"/>
+                                </c-col>
+                                <c-col [sm]="3">
+                                    <label cLabel cCol for="yearsInHoa">
+                                        Years in HOA
+                                    </label> 
+                                    <input cFormControl id="yearsInHoa" value="0" min="0" max="20" type="number" formControlName="yearsInHoa"/>
+                                </c-col>
+                                <c-col [sm]="3">
+                                    <label cLabel cCol for="yearsInMarried">
+                                        Years Married
+                                    </label>
+                                    <input cFormControl id="yearsInMarried" value="0" min="0" max="100" type="number" formControlName="yearsInMarried"/>
+                                </c-col>
+                                <c-col [sm]="2">
+                                    <label cLabel cCol for="siblings">
+                                        Siblings
+                                    </label>
+                                    <input cFormControl id="siblings" value="0" min="0" max="15" type="number" formControlName="siblings"/>
+                                </c-col>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-col [sm]="12">
+                                    <label cLabel="col" cCol for="facebook">
+                                        Facebook
+                                    </label>
+                                    <input cFormControl id="facebook" formControlName="facebook" type="url" placeholder="https://www.facebook.com/" pattern="https://www.facebook.com/.*"/>
+                                </c-col>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-col [sm]="12">
+                                    <label cLabel="col" cCol for="linkedin">
+                                        Linkedin
+                                    </label>
+                                    <input cFormControl id="linkedin" formControlName="linkedin" type="url" placeholder="https://www.linkedin.com/in" pattern="https://www.linkedin.com/.*"/>
+                                </c-col>
+                            </c-row>
+                            <c-row class="mb-4">
+                                <c-col [sm]="12">
+                                    <c-input-group class="mb-3">
+                                        <input #myInput cFormControl id="profilePic" type="file"  
+                                        (change)="onFileChange($event)" accept="image/*"  maxFileSize="20000" />
+                                        <label cInputGroupText for="profilePic">
+                                          Upload Profile Pic
+                                        </label>
+                                    </c-input-group>
+                                    <label cLabel="col" cCol >
+                                        <i>Image file size is 2MB max</i>
+                                    </label>
+                                </c-col>
+                            </c-row>
+                            <div formArrayName="introStatements">
+                                <c-row class="mb-4">
+                                    <c-col [sm]="6">
+                                        <button cButton color="info" (click)="addStatement()" id="idStatements">Add Statements</button>
+                                        <label cLabel="col" cCol for="idStatements">
+                                            <i>Click to add up to 3 statements.</i>
+                                        </label>
+                                    </c-col>
+                                </c-row>
+                                <c-row class="mb-4" *ngFor="let statement of statements().controls; let i=index"  [formGroupName]="i">
+                                    <c-col [sm]="9">
+                                        <span cInputGroupText>Statement:<i>(500 Characters limit)</i></span>
+                                        <textarea aria-label="Statement" formControlName="description" cFormControl id="description" [maxLength]="500"></textarea>
+                                    </c-col>
+                                    <c-col [sm]="3">
+                                        <button cButton color="danger" (click)="removeStatement(i)" >Remove</button>
+                                    </c-col>
+                                </c-row>
+                            </div>
+                            
+                            <div formArrayName="relevantActivities">
+                                
+                                <c-row class="mb-4">
+                                    <c-col [sm]="6">
+                                        <button cButton color="info" (click)="addRelatedActivity()">Add Related Activities</button>
+                                        <label cLabel="col" cCol for="idStatements">
+                                            <i>Click to add up to 5 related activities.</i>
+                                        </label>
+                                    </c-col>
+                                </c-row>
+                                <c-row class="mb-4" *ngFor="let activity of relatedActivities().controls; let i=index"  [formGroupName]="i">
+                                    <c-col [sm]="9">
+                                        <span cInputGroupText>Activities:<i>(500 Characters limit)</i></span>
+                                        <textarea aria-label="Activities" formControlName="description" cFormControl id="description" [maxLength]="500"></textarea>
+                                    </c-col>
+                                    <c-col [sm]="3">
+                                        <button cButton color="danger" (click)="removeRelatedActivity(i)" >Remove</button>
+                                    </c-col>
+                                </c-row>
+                            </div>
+
+                            <div formArrayName="goals">
+                                <c-row class="mb-4">
+                                    <c-col [sm]="6">
+                                        <button cButton color="info" (click)="addGoal()">Add Goal</button>
+                                        <label cLabel="col" cCol for="idStatements">
+                                            <i>Click to add up to 5 goals for the community.</i>
+                                        </label>
+                                    </c-col>
+                                </c-row>
+                                <c-row class="mb-4" *ngFor="let goal of goals().controls; let i=index"  [formGroupName]="i">
+                                    <c-col [sm]="9">
+                                        <span cInputGroupText>Goal:<i>(500 Characters limit)</i></span>
+                                        <textarea aria-label="Goal" formControlName="description" cFormControl id="description" [maxLength]="500"></textarea>
+                                    </c-col>
+                                    <c-col [sm]="3">
+                                        <button cButton color="danger" (click)="removeGoal(i)" >Remove</button>
+                                    </c-col>
+                                </c-row> 
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button cButton class="me-1" color="primary" type="submit">
+                                    Submit form
+                                </button>
+                            </div>
+                        </form>
+                    </c-card-body>
+                </c-card>
+            </c-col> 
+        </c-row>
+    </c-container>
+</div>
+  
